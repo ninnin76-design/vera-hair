@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>베라헤어 (Vera Hair) - 고양시 프리미엄 헤어 살롱</title>
+    <meta name="description" content="고양시 덕양구 베라헤어. 당신만의 아름다움을 찾아드리는 프리미엄 헤어 살롱입니다. 예약 문의: 031-962-3792">
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">VERA HAIR</a>
+            <button class="menu-toggle" aria-label="메뉴 열기">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#home">홈</a></li>
+                <li><a href="#about">소개</a></li>
+                <li><a href="#services">서비스 & 가격</a></li>
+                <li><a href="#gallery">갤러리</a></li>
+                <li><a href="#contact">오시는 길</a></li>
+                <li id="nav-notice-item" style="display: none;"><a href="#notices" aria-label="공지사항"><i
+                            class="fas fa-bell"></i></a></li>
+                <li><a href="#" id="admin-link"><i class="fas fa-user-shield"></i></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="fade-in">당신의 아름다움이<br>시작되는 곳</h1>
+            <p class="fade-in delay-1">Premium Hair Salon in Goyang</p>
+            <a href="tel:031-962-3792" class="btn btn-primary fade-in delay-2">예약 문의하기</a>
+            <p class="hero-phone fade-in delay-2">031. 962. 3792</p>
+        </div>
+    </section>
+
+    <!-- Notice Section -->
+    <section id="notices" class="section notice-section" style="display: none;">
+        <div class="container">
+            <div class="section-header">
+                <h2>공지사항</h2>
+                <p>Notice</p>
+            </div>
+            <div id="notice-list" class="notice-list">
+                <!-- 공지사항이 여기에 동적으로 추가됩니다 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>About Vera</h2>
+                <p>베라헤어 이야기</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text reveal">
+                    <h3>진정한 아름다움을 디자인합니다.</h3>
+                    <p>베라헤어는 고객님 한 분 한 분의 고유한 매력을 찾아드리기 위해 노력합니다. 편안하고 아늑한 공간에서 최고의 스타일리스트가 선사하는 프리미엄 서비스를 경험해보세요.</p>
+                    <p>최신 트렌드와 섬세한 기술로 당신의 일상에 특별함을 더해드립니다.</p>
+                </div>
+                <div class="about-image reveal">
+                    <img src="logo_image_white.png" alt="베라헤어 로고"
+                        style="border-radius: 8px; box-shadow: var(--shadow-md);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section bg-light">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Services</h2>
+                <p>서비스 & 가격</p>
+            </div>
+            <div class="price-card">
+                <div class="service-list">
+                    <div class="service-item">
+                        <div class="service-info">
+                            <span class="name">남자컷</span>
+                        </div>
+                        <span class="service-price">17,000원</span>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-info">
+                            <span class="name">여자컷</span>
+                        </div>
+                        <span class="service-price">17,000원</span>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-info">
+                            <span class="name">학생컷</span>
+                        </div>
+                        <span class="service-price">15,000원</span>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-info">
+                            <span class="name">일반펌 (기본펌 + 영양)</span>
+                        </div>
+                        <span class="service-price">55,000원</span>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-info">
+                            <span class="name">뿌리새치 (염색 + 앰플)</span>
+                        </div>
+                        <span class="service-price">45,000원</span>
+                    </div>
+                </div>
+                <p class="price-card-note">가격정보는 시술별 <strong>기본가격</strong>을 기준으로 제공됩니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Gallery</h2>
+                <p>스타일 갤러리</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item reveal">
+                    <img src="gallery1.png" alt="남성 헤어스타일">
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="gallery5.png" alt="여성 단발 스타일">
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="gallery3.png" alt="여성 헤어스타일">
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="gallery4.png" alt="여성 펌 스타일">
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="gallery2.png" alt="여성 헤어스타일">
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="gallery6.png" alt="헤어스타일">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section bg-dark text-white">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="contact-info reveal">
+                    <h2>Visit Us</h2>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Address</h3>
+                            <p>경기도 고양시 덕양구 호국로 859 (성사동 869)<br>대림e편한세상 가동상가 101호</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h3>Phone</h3>
+                            <p><a href="tel:031-962-3792">031-962-3792</a></p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h3>Hours</h3>
+                            <p>매일 10:00 - 20:00<br>(매주 월요일 휴무)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="map-container reveal">
+                    <!-- Placeholder for Map - Using a static image or simple div for now -->
+                    <div class="map-placeholder">
+                        <i class="fas fa-map"></i>
+                        <p>지도 보기</p>
+                        <a href="https://map.naver.com/v5/search/%EA%B3%A0%EC%96%91%EC%8B%9C%20%EB%B2%A0%EB%9D%BC%ED%97%A4%EC%96%B4"
+                            target="_blank" class="btn btn-outline-light btn-sm">네이버 지도 열기</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Login Modal -->
+    <div id="admin-login-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>관리자 로그인</h2>
+            <form id="admin-login-form">
+                <input type="password" id="admin-password" placeholder="비밀번호를 입력하세요" required>
+                <button type="submit" class="btn btn-primary">로그인</button>
+            </form>
+            <p id="login-error" class="error-message"></p>
+        </div>
+    </div>
+
+    <!-- Admin Panel Modal -->
+    <div id="admin-panel-modal" class="modal">
+        <div class="modal-content admin-panel">
+            <span class="modal-close">&times;</span>
+            <h2>공지사항 관리</h2>
+
+            <div class="admin-section">
+                <h3>새 공지사항 작성</h3>
+                <form id="notice-form">
+                    <input type="text" id="notice-title" placeholder="제목" required>
+                    <textarea id="notice-content" placeholder="내용" rows="4" required></textarea>
+                    <button type="submit" class="btn btn-primary">등록</button>
+                </form>
+            </div>
+
+            <div class="admin-section">
+                <h3>공지사항 목록</h3>
+                <div id="admin-notice-list" class="admin-notice-list">
+                    <!-- 관리자용 공지사항 목록 -->
+                </div>
+            </div>
+
+            <div class="admin-panel-footer">
+                <button id="admin-close" class="btn btn-primary">닫기</button>
+                <button id="admin-logout" class="btn btn-outline-light">로그아웃</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Notice Modal -->
+    <div id="edit-notice-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>공지사항 수정</h2>
+            <form id="edit-notice-form">
+                <input type="hidden" id="edit-notice-id">
+                <input type="text" id="edit-notice-title" placeholder="제목" required>
+                <textarea id="edit-notice-content" placeholder="내용" rows="4" required></textarea>
+                <button type="submit" class="btn btn-primary">수정 완료</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Vera Hair. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="admin.js"></script>
+</body>
+
+</html>
